@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.aukilabs.unity.conjurekit": {
+      "version": "0.6.14",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "url": "https://npm.aukiverse.com"
+    },
     "com.unity.ar-companion-core": {
       "version": "2.0.0-preview",
       "depth": 0,
@@ -156,8 +165,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.newtonsoft-json": {
-      "version": "2.0.0-preview",
-      "depth": 3,
+      "version": "3.0.2",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
