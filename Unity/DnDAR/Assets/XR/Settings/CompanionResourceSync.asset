@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CompanionResourceSync
   m_EditorClassIdentifier: 
   m_Resources: []
-  m_DefaultMarkerLibrary: {fileID: 0}
+  m_DefaultMarkerLibrary: {fileID: 11400000, guid: af5eb09e6dfc4d84e9fd1ae628c04249, type: 2}

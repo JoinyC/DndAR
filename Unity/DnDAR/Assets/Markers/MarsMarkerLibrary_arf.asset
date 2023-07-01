@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: MarsMarkerLibrary_arf
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5701826023769516933
+  m_GuidHigh: 16165263054643494825
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4659159856001179690
+      m_GuidHigh: 8210607735833611139
+    m_SerializedTextureGuid:
+      m_GuidLow: 5320042759455396482
+      m_GuidHigh: 14435900583065190955
+    m_Size: {x: 0.148, y: 0.148}
+    m_SpecifySize: 1
+    m_Name: Elf
+    m_Texture: {fileID: 2800000, guid: f33a528296b349d42b82747a189f56c8, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5736634472278855414
+      m_GuidHigh: 16799567612549366152
+    m_SerializedTextureGuid:
+      m_GuidLow: 14435437402965037751
+      m_GuidHigh: 10284928953199845338
+    m_Size: {x: 0.148, y: 0.148}
+    m_SpecifySize: 1
+    m_Name: Goblin
+    m_Texture: {fileID: 2800000, guid: f51e52b7f9d5c854da5f9b1b6468bb8e, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5356346837158362639
+      m_GuidHigh: 11743445078657500550
+    m_SerializedTextureGuid:
+      m_GuidLow: 5955077704001979755
+      m_GuidHigh: 8757832776722850968
+    m_Size: {x: 0.148, y: 0.148}
+    m_SpecifySize: 1
+    m_Name: Tiefling
+    m_Texture: {fileID: 2800000, guid: d4e3056baf9e52a498a4d66a82128a79, type: 3}

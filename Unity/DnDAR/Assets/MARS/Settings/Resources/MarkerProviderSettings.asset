@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78cbdb1a073a49729aca0637682078f, type: 3}
   m_Name: MarkerProviderSettings
   m_EditorClassIdentifier: 
-  m_XrReferenceImageLibraries: []
-  m_MarsMarkerLibraries: []
+  m_XrReferenceImageLibraries:
+  - {fileID: 11400000, guid: 6af2fbe17910a3340a16b6211ee24355, type: 2}
+  m_MarsMarkerLibraries:
+  - {fileID: 11400000, guid: af5eb09e6dfc4d84e9fd1ae628c04249, type: 2}
