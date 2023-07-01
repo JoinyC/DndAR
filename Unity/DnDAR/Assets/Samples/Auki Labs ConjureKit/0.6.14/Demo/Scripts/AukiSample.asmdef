@@ -1,0 +1,17 @@
+{
+    "name": "AukiSample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ecdedaa6c1cf94d1bb628d8eb041a4aa",
+        "GUID:83ceb5a932ea0a54da565ff0177080ad"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
