@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Markers:
   - m_SpecifySize: 1
-    m_Size: {x: 0.148, y: 0.148}
+    m_Size: {x: 0.1, y: 0.1}
     m_Label: Elf
     m_Texture: {fileID: 2800000, guid: f33a528296b349d42b82747a189f56c8, type: 3}
     m_MarkerDefinitionId:
       m_GuidLow: 4659159856001179690
       m_GuidHigh: 8210607735833611139
   - m_SpecifySize: 1
-    m_Size: {x: 0.148, y: 0.148}
+    m_Size: {x: 0.1, y: 0.1}
     m_Label: Goblin
     m_Texture: {fileID: 2800000, guid: f51e52b7f9d5c854da5f9b1b6468bb8e, type: 3}
     m_MarkerDefinitionId:
       m_GuidLow: 5736634472278855414
       m_GuidHigh: 16799567612549366152
   - m_SpecifySize: 1
-    m_Size: {x: 0.148, y: 0.148}
+    m_Size: {x: 0.1, y: 0.1}
     m_Label: Tiefling
     m_Texture: {fileID: 2800000, guid: d4e3056baf9e52a498a4d66a82128a79, type: 3}
     m_MarkerDefinitionId:

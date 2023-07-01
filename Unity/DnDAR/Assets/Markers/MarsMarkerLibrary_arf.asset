@@ -21,7 +21,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 5320042759455396482
       m_GuidHigh: 14435900583065190955
-    m_Size: {x: 0.148, y: 0.148}
+    m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
     m_Name: Elf
     m_Texture: {fileID: 2800000, guid: f33a528296b349d42b82747a189f56c8, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 14435437402965037751
       m_GuidHigh: 10284928953199845338
-    m_Size: {x: 0.148, y: 0.148}
+    m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
     m_Name: Goblin
     m_Texture: {fileID: 2800000, guid: f51e52b7f9d5c854da5f9b1b6468bb8e, type: 3}
@@ -41,7 +41,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 5955077704001979755
       m_GuidHigh: 8757832776722850968
-    m_Size: {x: 0.148, y: 0.148}
+    m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
     m_Name: Tiefling
     m_Texture: {fileID: 2800000, guid: d4e3056baf9e52a498a4d66a82128a79, type: 3}
