@@ -17,13 +17,26 @@ public class ConjureScript : MonoBehaviour
     [SerializeField] private Button spawnButton;
 
     [SerializeField] bool qrCodeBool;
-    [SerializeField] Button qrCodeButton;
+    //[SerializeField] Button qrCodeButton;
 
     private IConjureKit _conjureKit;
     private Manna _manna;
 
     private ARCameraManager arCameraManager;
     private Texture2D _videoTexture;
+
+    /// <summary>
+    /// When pressed will try to join session with id from customSessionInputField.
+    /// </summary>
+    public Button joinCustomSessionButton;
+
+    /// <summary>
+    /// Input field that allows you to specify session to join by id.
+    /// If the session does not exist the participant will be redirected to a new one.
+    /// </summary>
+    public InputField customSessionInputField;
+
+    private string _lastJoinedSessionId;
 
     void Start()
     {
@@ -96,7 +109,7 @@ public class ConjureScript : MonoBehaviour
     private void ToggleControlsState(bool interactable)
     {
         if (spawnButton) spawnButton.interactable = interactable;
-        if (qrCodeButton) qrCodeButton.interactable = interactable;
+        //if (qrCodeButton) qrCodeButton.interactable = interactable;
     }
 
     public void ToggleLighthouse()
@@ -127,5 +140,29 @@ public class ConjureScript : MonoBehaviour
 
         var pose = _conjureKit.GetSession().GetEntityPose(entity);
         Instantiate(cube, pose.position, pose.rotation);
+    }
+
+
+    /// <summary>
+    /// Tries to join a session by the id in the custom session InputField in the top right.
+    /// </summary>
+    public void JoinCustomSessionButtonPressed()
+    {
+        var targetSessionId = customSessionInputField.text;
+        if (string.IsNullOrEmpty(targetSessionId) || targetSessionId == _lastJoinedSessionId) return;
+        Debug.Log($"Joining custom session: {targetSessionId}");
+        _conjureKit.Disconnect();
+        _conjureKit.Connect(
+            targetSessionId,
+            session =>
+            {
+                Debug.Log($"Successfuly joined session with {targetSessionId}.");
+            },
+            errorMsg =>
+            {
+                Debug.LogWarning($"Failed to join session {targetSessionId}, connecting to a new session instead. ({errorMsg})");
+                _conjureKit.Connect();
+            }
+        );
     }
 }
