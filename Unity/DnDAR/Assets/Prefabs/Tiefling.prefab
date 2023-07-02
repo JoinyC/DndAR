@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5795145622291279266}
   m_Father: {fileID: 0}
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisChar: 2
+  Player: 0
 --- !u!1001 &6333969004455627337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,15 +60,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7e6185715e9bef4894260425f2a5773, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0015
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7e6185715e9bef4894260425f2a5773, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0015
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7e6185715e9bef4894260425f2a5773, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0015
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7e6185715e9bef4894260425f2a5773, type: 3}
       propertyPath: m_LocalPosition.x

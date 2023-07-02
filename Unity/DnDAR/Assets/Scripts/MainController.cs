@@ -21,7 +21,8 @@ public class MainController : MonoBehaviour
     public GameObject JoinSessionCanvas;
     public GameObject ScanCanvas;
     public GameObject LiveCanvas;
-    public ConjureScript Conjurer; 
+    public ConjureScript Conjurer;
+    public ScannedMarker ScannedMarker;
 
     public List<Character> SpawnedChars;
 
@@ -44,7 +45,6 @@ public class MainController : MonoBehaviour
     {
         SetupCanvas.SetActive(false);
         JoinSessionCanvas.SetActive(true);
-
     }
 
     public void ToScan()
@@ -53,18 +53,35 @@ public class MainController : MonoBehaviour
         ScanCanvas.SetActive(true);
     }
 
-    public void SpawnChar(Entity entity, Transform parent, Char c)
+    public void SpawnCharOnBoard(Char c, Transform pos, bool player)
     {
-
-
-        if(ScanCanvas.activeInHierarchy)
+        if (ScanCanvas.activeInHierarchy)
             ScanCanvas.SetActive(false);
 
+        var prefab = CharacterPrefabs.Where(x => x.GetComponent<Character>().ThisChar == c).FirstOrDefault();
+
+        if (player)
+        {
+            var t = Instantiate(prefab, pos.position, pos.rotation);
+            ScannedMarker.AddCharToList(t.GetComponent<Character>());
+        }
+        else
+        {
+            var t = Instantiate(prefab, pos.position, Quaternion.identity);
+            t.transform.rotation = new Quaternion(0, 180, 0, 0);
+            ScannedMarker.AddCharToList(t.GetComponent<Character>());
+        }
+    }
+
+    public void SpawnChar(Entity entity, Transform parent, Char c)
+    {
+        if (ScanCanvas.activeInHierarchy)
+            ScanCanvas.SetActive(false);
 
         var prefab = CharacterPrefabs.Where(x => x.GetComponent<Character>().ThisChar == c).FirstOrDefault();
         var t = Instantiate(prefab, parent);
 
-        if(t != null)
+        if (t != null)
             SpawnedChars.Add(prefab.GetComponent<Character>());
 
         if (!LiveCanvas.activeInHierarchy)
