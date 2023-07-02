@@ -1,7 +1,8 @@
-using UnityEngine;
 using Auki.ConjureKit;
 using Auki.ConjureKit.Manna;
 using Auki.Util;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -16,11 +17,15 @@ public class ConjureScript : MonoBehaviour
     [SerializeField] private GameObject cube;
     [SerializeField] private Button spawnButton;
 
+    Char _thisChar;
+    Transform _parent;
+
     [SerializeField] bool qrCodeBool;
     //[SerializeField] Button qrCodeButton;
 
     private IConjureKit _conjureKit;
     private Manna _manna;
+    private MainController manager;
 
     public UIManager uiMan;
 
@@ -42,6 +47,7 @@ public class ConjureScript : MonoBehaviour
 
     void Start()
     {
+        manager = FindObjectOfType<MainController>();
         arCameraManager = arCamera.GetComponent<ARCameraManager>();
 
         _conjureKit = new ConjureKit(
@@ -67,7 +73,8 @@ public class ConjureScript : MonoBehaviour
             sessionID.text = "";
         };
 
-        _conjureKit.OnEntityAdded += CreateCube;
+        _conjureKit.OnEntityAdded += SpawnChar;
+        //_conjureKit.OnEntityAdded += CreateCube;
 
         _conjureKit.Init(ConjureKitConfiguration.Get());
 
@@ -117,26 +124,26 @@ public class ConjureScript : MonoBehaviour
     public void ToggleLighthouse()
     {
         qrCodeBool = !qrCodeBool;
-        _manna.SetLighthouseVisible(true);
+        _manna.SetLighthouseVisible(qrCodeBool);
     }
 
-    public void CreateCubeEntity()
-    {
-        if (_conjureKit.GetState() != State.Calibrated)
-            return;
+    //public void CreateCubeEntity()
+    //{
+    //    if (_conjureKit.GetState() != State.Calibrated)
+    //        return;
 
-        Vector3 position = arCamera.transform.position + arCamera.transform.forward * 0.5f;
-        Quaternion rotation = Quaternion.Euler(0, arCamera.transform.eulerAngles.y, 0);
+    //    Vector3 position = arCamera.transform.position + arCamera.transform.forward * 0.5f;
+    //    Quaternion rotation = Quaternion.Euler(0, arCamera.transform.eulerAngles.y, 0);
 
-        Pose entityPos = new Pose(position, rotation);
+    //    Pose entityPos = new Pose(position, rotation);
 
-        _conjureKit.GetSession().AddEntity(
-            entityPos,
-            onComplete: entity => CreateCube(entity),
-            onError: error => Debug.Log(error));
-    }
+    //    _conjureKit.GetSession().AddEntity(
+    //        entityPos,
+    //        onComplete: entity => CreateCube(entity),
+    //        onError: error => Debug.Log(error));
+    //}
 
-    private void CreateCube(Entity entity)
+    private void CreateChar(Entity entity)
     {
         if (entity.Flag == EntityFlag.EntityFlagParticipantEntity) return;
 
@@ -160,7 +167,7 @@ public class ConjureScript : MonoBehaviour
             {
                 Debug.Log($"Successfuly joined session with {targetSessionId}.");
                 uiMan.ToScan();
-                
+
             },
             errorMsg =>
             {
@@ -170,13 +177,36 @@ public class ConjureScript : MonoBehaviour
         );
     }
 
-    public void AddCharEntity(Vector3 position, Quaternion rotation, Char c)
+    public void AddCharEntity(Transform parent, Char c)
     {
-        var manager = FindObjectOfType<MainController>();
-        Pose entityPos = new Pose(position, rotation);
+        _thisChar = c;
+        _parent = parent;
+
+        Pose entityPos = new Pose(parent.position, parent.rotation);
         _conjureKit.GetSession().AddEntity(
     entityPos,
-    onComplete: entity => manager.SpawnChar(transform.parent, c),
+    onComplete: entity => SpawnChar(entity),
     onError: error => Debug.Log(error));
+    }
+
+
+    public void SpawnChar(Entity entity)
+    {
+        if (entity.Flag == EntityFlag.EntityFlagParticipantEntity) return;
+
+        if (manager.ScanCanvas.activeInHierarchy)
+            manager.ScanCanvas.SetActive(false);
+
+
+        var prefab = manager.CharacterPrefabs.Where(x => x.GetComponent<Character>().ThisChar == _thisChar).FirstOrDefault();
+        var pose = _conjureKit.GetSession().GetEntityPose(entity);
+        Instantiate(prefab, pose.position, pose.rotation);
+        var t = Instantiate(prefab, _parent);
+
+        if (t != null)
+            manager.SpawnedChars.Add(prefab.GetComponent<Character>());
+
+        if (!manager.LiveCanvas.activeInHierarchy)
+            manager.LiveCanvas.SetActive(true);
     }
 }

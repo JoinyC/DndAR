@@ -1,3 +1,4 @@
+using Auki.ConjureKit;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class MainController : MonoBehaviour
     public GameObject LiveCanvas;
     public ConjureScript Conjurer; 
 
-    private List<Character> SpawnedChars;
+    public List<Character> SpawnedChars;
 
     private void Awake()
     {
@@ -52,11 +53,13 @@ public class MainController : MonoBehaviour
         ScanCanvas.SetActive(true);
     }
 
-    public void SpawnChar(Transform parent, Char c)
+    public void SpawnChar(Entity entity, Transform parent, Char c)
     {
+
 
         if(ScanCanvas.activeInHierarchy)
             ScanCanvas.SetActive(false);
+
 
         var prefab = CharacterPrefabs.Where(x => x.GetComponent<Character>().ThisChar == c).FirstOrDefault();
         var t = Instantiate(prefab, parent);

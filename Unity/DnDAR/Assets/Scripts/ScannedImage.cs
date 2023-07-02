@@ -10,7 +10,7 @@ public class ScannedImage : MonoBehaviour
     {
         if (!firstTime)
         {
-            conjurer.AddCharEntity(transform.parent.position, Quaternion.identity, ThisChar);
+            conjurer.AddCharEntity(transform.parent, ThisChar);
         }
         else
         {
