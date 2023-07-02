@@ -17,8 +17,10 @@ public class MainController : MonoBehaviour
     public List<GameObject> CharacterPrefabs;
     public AppState AppState;
     public GameObject SetupCanvas;
+    public GameObject JoinSessionCanvas;
     public GameObject ScanCanvas;
     public GameObject LiveCanvas;
+    public ConjureScript Conjurer; 
 
     private List<Character> SpawnedChars;
 
@@ -31,19 +33,28 @@ public class MainController : MonoBehaviour
     private void Setup()
     {
         SetupCanvas.SetActive(true);
+        JoinSessionCanvas.SetActive(false);
         ScanCanvas.SetActive(false);
         LiveCanvas.SetActive(false);
         SpawnedChars = new List<Character>();
     }
 
-    public void ToScan()
+    public void ToJoinSession()
     {
         SetupCanvas.SetActive(false);
+        JoinSessionCanvas.SetActive(true);
+
+    }
+
+    public void ToScan()
+    {
+        JoinSessionCanvas.SetActive(false);
         ScanCanvas.SetActive(true);
     }
 
     public void SpawnChar(Transform parent, Char c)
     {
+
         if(ScanCanvas.activeInHierarchy)
             ScanCanvas.SetActive(false);
 

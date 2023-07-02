@@ -6,6 +6,12 @@ public class UIManager : MonoBehaviour
 
     public void StartButton()
     {
+        Main.ToJoinSession();
+    }
+
+    public void ToScan()
+    {
         Main.ToScan();
     }
+
 }

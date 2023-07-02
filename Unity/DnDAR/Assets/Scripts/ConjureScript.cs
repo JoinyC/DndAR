@@ -22,6 +22,8 @@ public class ConjureScript : MonoBehaviour
     private IConjureKit _conjureKit;
     private Manna _manna;
 
+    public UIManager uiMan;
+
     private ARCameraManager arCameraManager;
     private Texture2D _videoTexture;
 
@@ -52,7 +54,7 @@ public class ConjureScript : MonoBehaviour
         _conjureKit.OnStateChanged += state =>
         {
             sessionState.text = state.ToString();
-            ToggleControlsState(state == State.Calibrated);
+            ToggleControlsState(state == State.JoinedSession);
         };
 
         _conjureKit.OnJoined += session =>
@@ -115,7 +117,7 @@ public class ConjureScript : MonoBehaviour
     public void ToggleLighthouse()
     {
         qrCodeBool = !qrCodeBool;
-        _manna.SetLighthouseVisible(qrCodeBool);
+        _manna.SetLighthouseVisible(true);
     }
 
     public void CreateCubeEntity()
@@ -157,6 +159,8 @@ public class ConjureScript : MonoBehaviour
             session =>
             {
                 Debug.Log($"Successfuly joined session with {targetSessionId}.");
+                uiMan.ToScan();
+                
             },
             errorMsg =>
             {
@@ -164,5 +168,15 @@ public class ConjureScript : MonoBehaviour
                 _conjureKit.Connect();
             }
         );
+    }
+
+    public void AddCharEntity(Vector3 position, Quaternion rotation, Char c)
+    {
+        var manager = FindObjectOfType<MainController>();
+        Pose entityPos = new Pose(position, rotation);
+        _conjureKit.GetSession().AddEntity(
+    entityPos,
+    onComplete: entity => manager.SpawnChar(transform.parent, c),
+    onError: error => Debug.Log(error));
     }
 }
